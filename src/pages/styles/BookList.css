@@ -1,0 +1,64 @@
+header {
+  padding-top: 100px;
+}
+
+.nav-button {
+  margin: 20px auto 0;
+  display: block;
+  width: 180px;
+  padding: 12px;
+  background: linear-gradient(45deg, #43da25, #118a11);
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(67, 218, 37, 0.3);
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.book-card {
+  background: white;
+  padding: 28px;
+  border-radius: 20px;
+  box-shadow: 0 0px 30px rgba(0, 0, 0, 0.418);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  height: fit-content;
+}
+
+
+.book-card p {
+  margin: 8px 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+
+.book-card button {
+  height: 42px;
+  background: #e53e3e;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

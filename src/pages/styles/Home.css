@@ -1,0 +1,67 @@
+/* src/pages/styles/Home.css */
+
+.buttons-container {
+  display: flex;
+  flex-wrap: wrap;          
+  justify-content: center;  
+  gap: 40px;                   
+  margin: 80px 0;             
+  padding: 0 20px;             
+}
+
+.action-button {
+  padding: 7px 160px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  transition: all 0.35s ease;
+  flex: 1;                       
+  min-width: 280px;              
+  max-width: 420px;             
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.action-button span {
+  display: block;
+  font-size: 1.4rem;
+  margin-top: 8px;
+  opacity: 0.9;
+}
+
+/* Botón Libros */
+.books-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+}
+
+.books-btn:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(255, 107, 107, 0.45);
+}
+
+/* Botón Usuarios */
+.users-btn {
+  background: linear-gradient(135deg, #4ecdc4, #44a08d);
+}
+
+.users-btn:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(78, 205, 196, 0.45);
+}
+
+/* En pantallas pequeñas: asegura que estén uno debajo del otro y centrados */
+@media (max-width: 768px) {
+  .buttons-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .action-button {
+    width: 100%;
+    max-width: 380px;
+  }
+}

@@ -1,0 +1,76 @@
+.book-form-card {
+  margin-top: 100px;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.418);
+  width: 900px;
+  max-width: 500px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.form-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #2d3748;
+  font-weight: 500;
+  background: black;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group input {
+  margin: 1px auto;    
+  width: 80%;
+  padding: 7px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 3px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #f8fafc;
+}
+
+
+.submit-button {
+  margin: 1px auto;    
+  display: block;
+  width: 200px;
+  padding: 10px;
+  background: linear-gradient(45deg, #43da25, #118a11);
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+.submit-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+}
+
+.error-message {
+  background-color: #fed7d7;
+  margin-top: 5PX;
+  color: #9b2c2c;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.95rem;
+  border: 1px solid #feb2b2;
+}
+
