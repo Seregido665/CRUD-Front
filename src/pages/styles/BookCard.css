@@ -53,6 +53,21 @@
   transition: all 0.3s ease;
   box-shadow: 0 10px 20px rgba(67, 218, 37, 0.3);
 }
+.btn-login {
+  margin: 20px auto 0;
+  display: block;
+  width: 180px;
+  padding: 7px;
+  background: linear-gradient(45deg, #25dac2, #118a84);
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(37, 218, 209, 0.3);
+}
 
 /* Botón ELIMINAR */
 .btn-delete {

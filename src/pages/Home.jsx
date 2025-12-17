@@ -20,7 +20,7 @@ const Home = () => {
             </button>
           </Link>
 
-          <Link to="/users">
+          <Link to="/userList">
             <button className="action-button users-btn">
               <span>Usuarios</span>
             </button>

@@ -12,8 +12,8 @@ const Navbar = () => {
             <Link to={`/bookList`} className="nav-link">
                 Libros
             </Link>
-            <Link to={`/bookForm`} className="nav-link">
-                Crear Libro
+            <Link to={`/userList`} className="nav-link">
+                Usuarios
             </Link>
         </nav>
 

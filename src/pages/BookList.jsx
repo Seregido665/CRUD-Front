@@ -6,9 +6,10 @@ import './styles/BookList.css'
 import { Link } from 'react-router-dom'
 import { deleteBook, getBooks } from '../services/books.service'
 
-const Home = () => {
+const BookList = () => {
   const [books, setBooks] = useState([])
 
+  // --- useEffect CUANDO SE HAGA ALGO AUTOMATICAMENTE ---
   useEffect(() => {
     getBooks()          // PROMESA
       .then((response) => {
@@ -20,15 +21,20 @@ const Home = () => {
       })
   }, [])
 
+  // --- ES UN handleDelete Y NO UN useEffect PORQUE EL USUARIO ACTIVA LA ACCION ---
   const handleDelete = (id) => {
+    console.log('Entro en handleDelete?', id)
     deleteBook(id)      // PROMESA
       .then(() => {
+        console.log('Book deleted?:', id)
         setBooks(books.filter((book) => book.id !== id))
       })
       .catch((error) => {
         console.error('Error deleting book:', error)
       })
   }
+
+  console.log(books)
 
   return (
     <div>
@@ -59,4 +65,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default BookList

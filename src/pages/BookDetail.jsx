@@ -8,6 +8,7 @@ const BookDetail = () => {
   const [book, setBook] = useState(null);
   const { id } = useParams();
 
+  // --- useEffect CUANDO SE HAGA ALGO AUTOMATICAMENTE ---
   useEffect(() => {
     getBookById(id)       // PROMESA
       .then((response) => {
