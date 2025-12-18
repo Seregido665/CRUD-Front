@@ -4,13 +4,13 @@ import { postBook } from '../services/books.service'
 import Navbar from '../components/navbar'
 import './styles/BookForm.css'
 
-const BookForm = ({ initialData = {} }) => {
+const BookForm = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    title: initialData.title || '',
-    author: initialData.author || '',
-    year: initialData.year || '',
-    user: initialData.user || ''
+    title: '',
+    author: '',
+    year: '',
+    user: ''
   })
 
 
@@ -22,19 +22,22 @@ const BookForm = ({ initialData = {} }) => {
     }))
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    /*if (!formData.title || !formData.author || !formData.year || !formData.user) {
-      return
-    }*/
+const handleSubmit = async (e) => {
+  e.preventDefault()
 
-    try {
-      postBook(formData)
-      navigate('/bookList')
-    } catch (err) {
-      console.error(err)
-    }
+  if (!formData.title || !formData.author || !formData.year || !formData.user) {
+    return
   }
+
+  try {
+    await postBook(formData); // ⬅️ ESPERAMOS al POST
+    navigate('/bookList');
+  } catch (err) {
+    console.error('Error al crear el libro:', err);
+  }
+};
+
+
     
 
   return (

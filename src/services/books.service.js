@@ -16,5 +16,7 @@ export const postBook = (bookData) => {
   return apiClient.post("/books", bookData);
 };
 
-
+export const editBook = (id) => {
+  return apiClient.patch(`/books/${id}`);
+};
 

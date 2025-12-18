@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import '../pages/styles/BookCard.css';
 
-const UserCard = ({ name, email, /*password,*/ id }) => {
+const UserCard = ({ name, email, /*password,*/ id, onDelete }) => {
   return (
     <div className="book-card">
       <div className="book-card-content">
@@ -13,9 +13,12 @@ const UserCard = ({ name, email, /*password,*/ id }) => {
         </div>
 
         <div className="book-card-actions">
-          <Link to={`/books/${id}`} className="btn-view">
+          <Link to={`/user/${id}`} className="btn-view">
             VER (GET /id)
           </Link>
+          <button onClick={() => onDelete(id)} className="btn-delete mt-3">
+            ELIMINAR (DELETE)
+          </button>
         </div>
       </div>
     </div>

@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { loginUser } from "../services/user.service";
-//import { postBook } from '../services/books.service'
 import Navbar from '../components/navbar'
 import './styles/BookForm.css'
 
-const LoginForm = ({ initialData = {} }) => {
+const LoginForm = () => {
   const navigate = useNavigate()
+  const [errors, setErrors] = useState({});
   const [loginData, setFormData] = useState({
-    email: initialData.email || '',
-    password: initialData.password || ''
+    email: '',
+    password: ''
   })
 
 
@@ -21,18 +21,23 @@ const LoginForm = ({ initialData = {} }) => {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault()
-    if (!loginData.name || !loginData.email || !loginData.password) {
-      return
+
+    if (!loginData.email || !loginData.password) {
+      setErrors({ general: { message: "Rellena todos los campos" } });
+      return;
     }
+
 
     loginUser(loginData)
           .then(() => {
+            setErrors({});
+            console.log("LOGUEADO")
             navigate('/userList')
           })
           .catch(err => {
-            console.error('Error login user:', err)
+            console.log('ERROR EN EL LOGIN:', err)
           });
       };
     
@@ -45,7 +50,7 @@ const LoginForm = ({ initialData = {} }) => {
           Iniciar Sesion.
         </h2>
 
-        <form onSubmit={handleSubmit} className="book-form">
+        <form onSubmit={handleLogin} className="book-form">
           <div className="form-group">
             <input
               type="text"
@@ -66,6 +71,7 @@ const LoginForm = ({ initialData = {} }) => {
               onChange={handleChange}
               placeholder="Password"
             />
+            {errors.general && (<div className="text-danger text-center mt-3">{errors.general.message}</div>)}
           </div>
 
           <button 

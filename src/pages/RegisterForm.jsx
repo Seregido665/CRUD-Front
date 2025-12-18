@@ -24,21 +24,15 @@ const RegisterForm = () => {
 
   const handleRegistration = (e) => {
     e.preventDefault()
-    if (!registerData.name || !registerData.email || !registerData.password) {
-      return
-    }
-
+    console.log("HoeeeeeeeeeeeeeelaBUENAS")
     registerUser(registerData)
       .then(() => {
+        console.log("HolaBUENAS")
         setErrors({});
         navigate('/userList')
       })
       .catch(err => {
-        if (err.status == 422) {
-          setErrors({ email: { message: 'Email already in use' } });
-        } else {
-          setErrors(err.response.data.errors);
-        }
+        setErrors(err.response.data.errors);
       });
   };
     

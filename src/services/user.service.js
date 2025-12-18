@@ -11,3 +11,15 @@ export const registerUser = (userData) => {
 export const loginUser = (userData) => {
   return apiClient.post("/login", userData);
 };
+
+export const deleteUser = (id) => {
+  return apiClient.delete(`/user/${id}`);
+};
+
+export const getUserById = (id) => {
+  return apiClient.get(`/user/${id}`);
+};
+
+export const editUser = (id) => {
+  return apiClient.patch(`/user/${id}`);
+};

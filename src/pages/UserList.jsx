@@ -3,7 +3,7 @@ import UserCard from '../components/UserCard'
 import Navbar from '../components/navbar'
 import './styles/BookList.css'
 import { Link } from 'react-router-dom'
-import { getUsers } from '../services/user.service'
+import { getUsers, deleteUser } from '../services/user.service'
 
 const UserList = () => {
   const [users, setUsers] = useState([])
@@ -12,23 +12,24 @@ const UserList = () => {
   useEffect(() => {
     getUsers()          // PROMESA
       .then((response) => {
-        console.log('Books fetched:', response.data)
+        console.log('Users fetched:', response.data)
         setUsers(response.data)
       })
       .catch((error) => {
-        console.error('Error fetching books:', error)
+        console.error('Error fetching users:', error)
       })
   }, [])
 
-  /*const handleDelete = (id) => {
-    deleteBook(id)      // PROMESA
+  const handleDelete = (id) => {
+    console.log('Entro en handleDelete?', id)
+    deleteUser(id)      // PROMESA
       .then(() => {
-        setBooks(books.filter((book) => book.id !== id))
+        setUsers(users.filter((user) => user.id !== id))
       })
       .catch((error) => {
-        console.error('Error deleting book:', error)
+        console.error('Error deleting user:', error)
       })
-  }*/
+  }
 
   return (
     <div>
@@ -46,7 +47,9 @@ const UserList = () => {
       <div className="books-grid">
         {users.map((user) => (
           <UserCard
-            /*onDelete={() => {handleDelete(book.id)}}*/
+            onDelete={() => {
+              handleDelete(user.id)
+            }}
             key={user.id}
             id={user.id}
             name={user.name}
