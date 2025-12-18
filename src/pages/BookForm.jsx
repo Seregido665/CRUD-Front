@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { postBook } from '../services/books.service'
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { postBook, getBookById, editBook } from '../services/books.service'
 import Navbar from '../components/navbar'
 import './styles/BookForm.css'
 
@@ -12,7 +12,22 @@ const BookForm = () => {
     year: '',
     user: ''
   })
+  const { id } = useParams();
 
+  useEffect(() => {
+  if (id) {
+    getBookById(id)
+      .then(res => {
+        setFormData({
+          title: res.data.title,
+          author: res.data.author,
+          year: res.data.year,
+          user: res.data.user
+        });
+      })
+      .catch(err => console.error(err));
+  }
+}, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -22,20 +37,28 @@ const BookForm = () => {
     }))
   }
 
-const handleSubmit = async (e) => {
-  e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (!formData.title || !formData.author || !formData.year || !formData.user) {
-    return
-  }
+    if (!formData.title || !formData.author || !formData.year || !formData.user) {
+      return;
+    }
 
-  try {
-    await postBook(formData); // ⬅️ ESPERAMOS al POST
-    navigate('/bookList');
-  } catch (err) {
-    console.error('Error al crear el libro:', err);
-  }
-};
+    try {
+      if (id) {
+        // Editar libro
+        await editBook(id, formData);
+      } else {
+        // Crear libro
+        await postBook(formData);
+      }
+
+      navigate('/bookList');
+    } catch (err) {
+      console.error('Error al guardar el libro:', err);
+    }
+  };
+
 
 
     
@@ -45,7 +68,7 @@ const handleSubmit = async (e) => {
       <Navbar />
       <div className="book-form-card">
         <h2 className="form-title">
-          Nuevo Libro (POST)
+          {id ? 'Editar Libro' : 'Nuevo Libro'}
         </h2>
 
         <form onSubmit={handleSubmit} className="book-form">
@@ -95,11 +118,8 @@ const handleSubmit = async (e) => {
             />
           </div>
 
-          <button 
-            type="submit" 
-            className={`submit-button`}
-          >
-            AÑADIR
+          <button type="submit" className="submit-button">
+            {id ? 'Actualizar' : 'Añadir'}
           </button>
         </form>
       </div>

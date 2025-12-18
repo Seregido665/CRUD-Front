@@ -25,6 +25,16 @@ const RegisterForm = () => {
   const handleRegistration = (e) => {
     e.preventDefault()
     console.log("HoeeeeeeeeeeeeeelaBUENAS")
+    if (!registerData.name || !registerData.email || !registerData.password) {
+      const newErrors = {};
+      if (!registerData.name) newErrors.name = { message: "Falta el nombre." };
+      if (!registerData.email) newErrors.email = { message: "Falta el email." };
+      if (!registerData.password) newErrors.password = { message: "Falta la contraseña." };
+      
+      setErrors(newErrors);
+      return;
+    }
+
     registerUser(registerData)
       .then(() => {
         console.log("HolaBUENAS")

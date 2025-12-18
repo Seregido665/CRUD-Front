@@ -19,6 +19,9 @@ const BookCard = ({ title, year, user, author, onDelete, id }) => {
           <Link to={`/books/${id}`} className="btn-view">
             VER (GET /id)
           </Link>
+          <Link to={`/bookForm/edit/${id}`} className="btn-view">
+            EDITAR (PATCH /id)
+          </Link>
           <button onClick={() => onDelete(id)} className="btn-delete mt-3">
             ELIMINAR (DELETE)
           </button>
