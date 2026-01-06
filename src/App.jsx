@@ -17,12 +17,13 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/bookList" element={<BookList />} />
           <Route path="/books/:id" element={<BookDetail />} />
-          <Route path="/bookForm/new" element={<BookForm />} />
+          <Route path="/bookForm" element={<BookForm />} />
           <Route path="/bookForm/edit/:id" element={<BookForm />} />
           <Route path="/userList" element={<UserList />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/user/:id" element={<UserDetail />} />
+          <Route path="/register/editUser/:id" element={<RegisterForm />} />
         </Routes>
       </div>
     </Router>

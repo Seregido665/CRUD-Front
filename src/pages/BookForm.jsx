@@ -37,7 +37,8 @@ const BookForm = () => {
     }))
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {   // AQUI async-await ES NECESARIO PORQUE LA PETICICOON HTTP
+                                        // ESPERA A QUE TERMINE LAS FUNCIONES editBook O postBook
     e.preventDefault();
 
     if (!formData.title || !formData.author || !formData.year || !formData.user) {

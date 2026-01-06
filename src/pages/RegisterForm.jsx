@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { registerUser } from "../services/user.service";
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { registerUser, getUserById } from "../services/user.service";
 import Navbar from '../components/navbar'
 import './styles/BookForm.css'
 
@@ -12,6 +12,21 @@ const RegisterForm = () => {
     email: '',
     password: ''
   })
+  const { id } = useParams();
+
+    useEffect(() => {
+    if (id) {
+      getUserById(id)
+        .then(res => {
+          setRegisterData({
+            name: res.data.name,
+            email: res.data.email,
+            password: res.data.password
+          });
+        })
+        .catch(err => console.error(err));
+    }
+  }, [id]);
 
 
   const handleChange = (e) => {
@@ -20,6 +35,8 @@ const RegisterForm = () => {
       ...prev,
       [name]: value
     }))
+
+    
   }
 
   const handleRegistration = (e) => {
@@ -29,7 +46,8 @@ const RegisterForm = () => {
       const newErrors = {};
       if (!registerData.name) newErrors.name = { message: "Falta el nombre." };
       if (!registerData.email) newErrors.email = { message: "Falta el email." };
-      if (!registerData.password) newErrors.password = { message: "Falta la contraseña." };
+      if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(registerData.email)) { newErrors.email = { message: "Formato incorrect." }; }
+      if (registerData.password.length < 8) newErrors.password = { message: "Debe tener al menos 8 caracteres" };
       
       setErrors(newErrors);
       return;
@@ -68,6 +86,7 @@ const RegisterForm = () => {
 
           <div className="form-group">
             <input
+              type="email"      // HACE REFERENCIA AL User.model.js DEL back
               name="email"
               value={registerData.email}
               onChange={handleChange}
