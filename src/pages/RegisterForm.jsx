@@ -13,6 +13,8 @@ const RegisterForm = () => {
     password: ''
   })
   const { id } = useParams();
+<<<<<<< HEAD
+=======
 
     useEffect(() => {
     if (id) {
@@ -27,7 +29,21 @@ const RegisterForm = () => {
         .catch(err => console.error(err));
     }
   }, [id]);
+>>>>>>> b19cac3977075f7d74c3d423908a4a3c41f86b20
 
+     useEffect(() => {
+        if (id) {
+          getUserById(id)
+            .then(res => {
+              setRegisterData({
+                name: res.data.name,
+                email: res.data.email,
+                password: res.data.password
+              });
+            })
+            .catch(err => console.error(err));
+        }
+      }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -40,6 +56,30 @@ const RegisterForm = () => {
   }
 
   const handleRegistration = (e) => {
+<<<<<<< HEAD
+    e.preventDefault();
+
+    const newErrors = {};
+    if (!registerData.name) {newErrors.name = { message: "Falta el nombre." };}
+    if (!registerData.email) {newErrors.email = { message: "Falta el email." };}
+    if (!registerData.password) {newErrors.password = { message: "Falta la contraseña." };}
+    if (!registerData.passwordConfirm) {newErrors.passwordConfirm = { message: "Confirma la contraseña." };}
+
+    if (registerData.password !== registerData.passwordConfirm) {
+        newErrors.passwordConfirm = {
+        message: "Las contraseñas no coinciden."
+        };
+    }
+
+    //const emailRegex = /^[\w.-]+@[\w.-]+\.\w{2,3}$/;
+    /*if (registerData.email && !emailRegex.test(registerData.email)) {
+        newErrors.email = { message: "Estructura incorrecta" };
+    }*/
+
+    if (Object.keys(newErrors).length > 0) {
+        setErrors(newErrors);
+        return;
+=======
     e.preventDefault()
     console.log("HoeeeeeeeeeeeeeelaBUENAS")
     if (!registerData.name || !registerData.email || !registerData.password) {
@@ -51,6 +91,7 @@ const RegisterForm = () => {
       
       setErrors(newErrors);
       return;
+>>>>>>> b19cac3977075f7d74c3d423908a4a3c41f86b20
     }
 
     registerUser(registerData)
@@ -105,6 +146,17 @@ const RegisterForm = () => {
             />
             {errors.password && (<div className="text-danger mt-2">{errors.password.message}</div>)}
           </div>
+
+          {/*<div className="form-group">
+            <input
+              type="password"
+              name="confirmPassword"
+              value={registerData.passwordConfirm}
+              onChange={handleChange}
+              placeholder="Confirm Password"
+            />
+            {errors.passwordConfirm && (<div className="text-danger mt-2">{errors.passwordConfirm.message}</div>)}
+          </div>*/}
 
           <button 
             type="submit" 

@@ -25,6 +25,12 @@ const Home = () => {
               <span>Usuarios</span>
             </button>
           </Link>
+          
+          <Link to="/libraryList">
+            <button className="action-button libraries-btn">
+              <span>Librerías</span>
+            </button>
+          </Link>
         </div>
       </div>
     </div>
