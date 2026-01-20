@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { registerUser } from "../services/user.service";
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { registerUser, getUserById } from "../services/user.service";
 import Navbar from '../components/navbar'
 import './styles/BookForm.css'
 
@@ -12,7 +12,21 @@ const RegisterForm = () => {
     email: '',
     password: ''
   })
+  const { id } = useParams();
 
+     useEffect(() => {
+        if (id) {
+          getUserById(id)
+            .then(res => {
+              setRegisterData({
+                name: res.data.name,
+                email: res.data.email,
+                password: res.data.password
+              });
+            })
+            .catch(err => console.error(err));
+        }
+      }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -23,16 +37,28 @@ const RegisterForm = () => {
   }
 
   const handleRegistration = (e) => {
-    e.preventDefault()
-    console.log("HoeeeeeeeeeeeeeelaBUENAS")
-    if (!registerData.name || !registerData.email || !registerData.password) {
-      const newErrors = {};
-      if (!registerData.name) newErrors.name = { message: "Falta el nombre." };
-      if (!registerData.email) newErrors.email = { message: "Falta el email." };
-      if (!registerData.password) newErrors.password = { message: "Falta la contraseña." };
-      
-      setErrors(newErrors);
-      return;
+    e.preventDefault();
+
+    const newErrors = {};
+    if (!registerData.name) {newErrors.name = { message: "Falta el nombre." };}
+    if (!registerData.email) {newErrors.email = { message: "Falta el email." };}
+    if (!registerData.password) {newErrors.password = { message: "Falta la contraseña." };}
+    if (!registerData.passwordConfirm) {newErrors.passwordConfirm = { message: "Confirma la contraseña." };}
+
+    if (registerData.password !== registerData.passwordConfirm) {
+        newErrors.passwordConfirm = {
+        message: "Las contraseñas no coinciden."
+        };
+    }
+
+    //const emailRegex = /^[\w.-]+@[\w.-]+\.\w{2,3}$/;
+    /*if (registerData.email && !emailRegex.test(registerData.email)) {
+        newErrors.email = { message: "Estructura incorrecta" };
+    }*/
+
+    if (Object.keys(newErrors).length > 0) {
+        setErrors(newErrors);
+        return;
     }
 
     registerUser(registerData)
@@ -86,6 +112,17 @@ const RegisterForm = () => {
             />
             {errors.password && (<div className="text-danger mt-2">{errors.password.message}</div>)}
           </div>
+
+          {/*<div className="form-group">
+            <input
+              type="password"
+              name="confirmPassword"
+              value={registerData.passwordConfirm}
+              onChange={handleChange}
+              placeholder="Confirm Password"
+            />
+            {errors.passwordConfirm && (<div className="text-danger mt-2">{errors.passwordConfirm.message}</div>)}
+          </div>*/}
 
           <button 
             type="submit" 

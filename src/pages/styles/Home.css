@@ -53,6 +53,16 @@
   box-shadow: 0 20px 40px rgba(78, 205, 196, 0.45);
 }
 
+/* Botón Librerias */
+.libraries-btn {
+  background: linear-gradient(135deg, #67cd4e, #56a044);
+}
+
+.libraries-btn:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(93, 205, 78, 0.45);
+}
+
 /* En pantallas pequeñas: asegura que estén uno debajo del otro y centrados */
 @media (max-width: 768px) {
   .buttons-container {

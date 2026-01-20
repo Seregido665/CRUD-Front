@@ -4,6 +4,7 @@ import BookList from './pages/BookList'
 import BookDetail from './pages/BookDetail'
 import UserDetail from './pages/UserDetail'
 import BookForm from './pages/BookForm'
+import LibraryList from './pages/LibraryList'
 import UserList from './pages/UserList'
 import RegisterForm from './pages/RegisterForm'
 import LoginForm from './pages/LoginForm'
@@ -17,12 +18,16 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/bookList" element={<BookList />} />
           <Route path="/books/:id" element={<BookDetail />} />
-          <Route path="/bookForm/new" element={<BookForm />} />
+          <Route path="/bookForm" element={<BookForm />} />
           <Route path="/bookForm/edit/:id" element={<BookForm />} />
+
+          <Route path="/libraryList" element={<LibraryList />} />
+
           <Route path="/userList" element={<UserList />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/user/:id" element={<UserDetail />} />
+          <Route path="/register/editUser/:id" element={<RegisterForm />} />
         </Routes>
       </div>
     </Router>
