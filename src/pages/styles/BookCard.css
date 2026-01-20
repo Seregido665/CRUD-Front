@@ -48,7 +48,7 @@
 .btn-add {
   margin: 20px auto 0;
   display: block;
-  width: 180 px;
+  width: 180px;
   padding: 7px;
   background: linear-gradient(45deg, #43da25, #118a11);
   color: white;
@@ -89,6 +89,7 @@
   transition: all 0.3s ease;
 }
 .btn-view {
+  width: 280px;
   padding: 10px 40px;
   border: none;
   border-radius: 7px;

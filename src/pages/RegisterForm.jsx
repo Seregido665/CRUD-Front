@@ -13,6 +13,23 @@ const RegisterForm = () => {
     password: ''
   })
   const { id } = useParams();
+<<<<<<< HEAD
+=======
+
+    useEffect(() => {
+    if (id) {
+      getUserById(id)
+        .then(res => {
+          setRegisterData({
+            name: res.data.name,
+            email: res.data.email,
+            password: res.data.password
+          });
+        })
+        .catch(err => console.error(err));
+    }
+  }, [id]);
+>>>>>>> b19cac3977075f7d74c3d423908a4a3c41f86b20
 
      useEffect(() => {
         if (id) {
@@ -34,9 +51,12 @@ const RegisterForm = () => {
       ...prev,
       [name]: value
     }))
+
+    
   }
 
   const handleRegistration = (e) => {
+<<<<<<< HEAD
     e.preventDefault();
 
     const newErrors = {};
@@ -59,6 +79,19 @@ const RegisterForm = () => {
     if (Object.keys(newErrors).length > 0) {
         setErrors(newErrors);
         return;
+=======
+    e.preventDefault()
+    console.log("HoeeeeeeeeeeeeeelaBUENAS")
+    if (!registerData.name || !registerData.email || !registerData.password) {
+      const newErrors = {};
+      if (!registerData.name) newErrors.name = { message: "Falta el nombre." };
+      if (!registerData.email) newErrors.email = { message: "Falta el email." };
+      if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(registerData.email)) { newErrors.email = { message: "Formato incorrect." }; }
+      if (registerData.password.length < 8) newErrors.password = { message: "Debe tener al menos 8 caracteres" };
+      
+      setErrors(newErrors);
+      return;
+>>>>>>> b19cac3977075f7d74c3d423908a4a3c41f86b20
     }
 
     registerUser(registerData)
@@ -94,6 +127,7 @@ const RegisterForm = () => {
 
           <div className="form-group">
             <input
+              type="email"      // HACE REFERENCIA AL User.model.js DEL back
               name="email"
               value={registerData.email}
               onChange={handleChange}

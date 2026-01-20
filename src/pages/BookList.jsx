@@ -21,7 +21,6 @@ const BookList = () => {
       })
   }, [])
 
-  // --- ES UN handleDelete Y NO UN useEffect PORQUE EL USUARIO ACTIVA LA ACCION ---
   const handleDelete = (id) => {
     console.log('Entro en handleDelete?', id)
     deleteBook(id)      // PROMESA
